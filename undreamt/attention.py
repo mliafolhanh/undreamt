@@ -42,7 +42,7 @@ class GlobalAttention(nn.Module):
 
         # Mask alignment scores
         if mask is not None:
-            align.data.masked_fill_(mask, -float('inf'))
+            align.data.masked_fill_(mask.bool(), -float('inf'))
 
         # Compute attention from alignment scores
         attention = self.softmax(align)  # batch*length
